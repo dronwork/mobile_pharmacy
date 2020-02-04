@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_pharmacy/main_list.dart';
 import 'package:mobile_pharmacy/main.dart';
+import 'package:mobile_pharmacy/ui/test_screen.dart';
 
 class Info {
 //SystemScreen sys_screen = new SystemScreen();

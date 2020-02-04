@@ -5,6 +5,8 @@ import 'dart:convert';
 import 'package:mobile_pharmacy/ui/profile_screen.dart';
 import 'package:mobile_pharmacy/ui/settings_screen.dart';
 import 'package:mobile_pharmacy/ui/info_screen.dart';
+import 'package:mobile_pharmacy/ui/test_screen.dart';
+
 
 class SystemScreen extends StatefulWidget {
   @override
@@ -19,6 +21,7 @@ class SystemScreenState extends State<SystemScreen> {
   Settings settings = new Settings();
   Info info = new Info();
 
+
   List<Data> data = [];
 
   @override
@@ -28,6 +31,13 @@ class SystemScreenState extends State<SystemScreen> {
         title: Text('009.am', textScaleFactor: 1.5),
         actions: <Widget>[
           IconButton(
+            icon: const Icon(Icons.settings, size: 42, color: Colors.black26,),
+            tooltip: 'Profile',
+            onPressed: () {
+              settings.openPageSettings(context);
+            },
+          ),
+          IconButton(
             icon: const Icon(Icons.account_circle, size: 42, color: Colors.white70,),
             tooltip: 'Profile',
             onPressed: () {
@@ -35,28 +45,32 @@ class SystemScreenState extends State<SystemScreen> {
             },
           ),
         ],
+
       ),
       body: Container(
         child: ListView(
           children: _buildList(),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.refresh, size: 35, color: Colors.white,),
-        onPressed: () => _loadData(),
-      ),
-      persistentFooterButtons: <Widget>[
-        IconButton(
 
-          icon: Icon(Icons.settings, size: 45, semanticLabel: 'Настройки', color: Colors.deepOrange,),
+      persistentFooterButtons: <Widget>[
+
+        IconButton(
+          icon: Icon(Icons.settings, size: 40, semanticLabel: 'Настройки', color: Colors.deepOrange),
           onPressed: () {settings.openPageSettings(context);},
-          padding: EdgeInsets.only(right: 290),
+
+        ),
+
+        IconButton(
+          icon: Icon(Icons.add_box, size: 40, semanticLabel: 'Info', color: Colors.blue),
+          onPressed: () {info.openPageInfo(context);},
+
         ),
         IconButton(
-          icon: Icon(Icons.info_outline, size: 45, semanticLabel: 'Info', color: Colors.green,),
+          icon: Icon(Icons.info_outline, size: 40, semanticLabel: 'Info', color: Colors.green),
           onPressed: () {info.openPageInfo(context);},
-          padding: EdgeInsets.all(0),
-        )
+
+        ),
       ],
 
     );
