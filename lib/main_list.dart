@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:mobile_pharmacy/ui/profile_screen.dart';
+import 'package:mobile_pharmacy/ui/settings_screen.dart';
+import 'package:mobile_pharmacy/ui/info_screen.dart';
 
 class SystemScreen extends StatefulWidget {
   @override
@@ -12,7 +14,11 @@ class SystemScreen extends StatefulWidget {
 }
 
 class SystemScreenState extends State<SystemScreen> {
-  Profile scrn = new Profile();
+
+  Profile profile = new Profile();
+  Settings settings = new Settings();
+  Info info = new Info();
+
   List<Data> data = [];
 
   @override
@@ -25,7 +31,7 @@ class SystemScreenState extends State<SystemScreen> {
             icon: const Icon(Icons.account_circle, size: 42, color: Colors.white70,),
             tooltip: 'Profile',
             onPressed: () {
-              scrn.openPage(context);
+              profile.openPageProfile(context);
             },
           ),
         ],
@@ -36,24 +42,23 @@ class SystemScreenState extends State<SystemScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.refresh),
+        child: Icon(Icons.refresh, size: 35, color: Colors.white,),
         onPressed: () => _loadData(),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info_outline),
-            title: Text('Информация'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            title: Text('Настройки'),
-          ),
-        ],
-        //currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        //onTap: _onItemTapped,
-      ),
+      persistentFooterButtons: <Widget>[
+        IconButton(
+
+          icon: Icon(Icons.settings, size: 45, semanticLabel: 'Настройки', color: Colors.deepOrange,),
+          onPressed: () {settings.openPageSettings(context);},
+          padding: EdgeInsets.only(right: 290),
+        ),
+        IconButton(
+          icon: Icon(Icons.info_outline, size: 45, semanticLabel: 'Info', color: Colors.green,),
+          onPressed: () {info.openPageInfo(context);},
+          padding: EdgeInsets.all(0),
+        )
+      ],
+
     );
   }
 
