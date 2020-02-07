@@ -15,7 +15,7 @@ class Settings {
           body: const Center(
             child: Text(
               'Настройки пользователя !',
-              style: TextStyle(fontSize: 24),
+              style: TextStyle(fontSize: 24, color: Colors.red),
             ),
           ),
           floatingActionButton: FloatingActionButton.extended(
